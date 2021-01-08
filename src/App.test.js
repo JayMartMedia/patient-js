@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import App from './App';
 import PatientTable from './components/PatientTable';
 
-describe('', () => {
+describe('App', () => {
   let wrapper;
 
   beforeEach(() => {
