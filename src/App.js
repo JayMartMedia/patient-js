@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from 'react';
+
+import PatientTable from './components/PatientTable';
 
 function App() {
+  const [viewPatients, setViewPatients] = useState(false);
+
+  const onViewPatientsClick = () => {
+    setViewPatients(true);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Demo Patient Tracker</h1>
       </header>
+      { 
+        viewPatients ? 
+        <PatientTable /> : 
+        <button onClick={onViewPatientsClick}>View Patients</button>
+      }
     </div>
   );
 }
