@@ -1,32 +1,20 @@
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import PatientTable from './PatientTable';
-import MaterialTable from 'material-table';
-import RCTable from 'rc-table';
+import { ReactTable } from './ReactTable';
 
 describe('PatientTable', () => {
-    let wrapper;
+    let wrapper, reactTable;
 
     beforeEach(() => {
         wrapper = shallow(<PatientTable />);
-
-    })
-
-    it('renders the RCTable', () => {
-        const rcTable = wrapper.find(RCTable);
-        expect(rcTable).toHaveLength(1);
+        reactTable = wrapper.find(ReactTable);
     });
 
-    it('has the correct title', () => {
-        const wrapperMount = mount(<PatientTable />);
-        const rcTable = wrapperMount.find(RCTable);
-        expect(rcTable.text()).toContain('Patients');
-    })
+    it('renders the table', () => {
+        expect(reactTable).toHaveLength(1);
+    });
 
-    it('contains appropriate columns', () => {
-        const wrapperMount = mount(<PatientTable />);
-        const rcTable = wrapperMount.find(RCTable);
-
-        expect(rcTable.text()).toContain('First Name');
-        expect(rcTable.text()).toContain('Last Name');
-    })
+    it('contains appropriate amount of columns', () => {
+        expect(reactTable.props().columns).toHaveLength(5);
+    });
 });
