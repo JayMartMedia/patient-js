@@ -3,7 +3,7 @@ import PATIENT_CONSTANTS from '../../constants/patientConstants';
 import { Rest } from '../../utility/rest';
 
 import Button from '../buttons/Button';
-import CreatePatient from '../CreatePatient';
+import PatientModal from '../PatientModal';
 import PatientTable from './PatientTable';
 
 function PatientTableContainer() {
@@ -12,9 +12,11 @@ function PatientTableContainer() {
 
     const [currentPatient, setCurrentPatient] = useState({
         firstName: '',
+        id: null,
         lastName: '',
         dateOfBirth: ''
     });
+
     const [addPatientIsVisible, setAddPatientIsVisible] = useState(false);
 
     const addPatientHandler = () => {
@@ -23,7 +25,7 @@ function PatientTableContainer() {
 
     useEffect( async () => {
         setData(await Rest.get(PATIENT_CONSTANTS.TYPE))
-    }, [addPatientIsVisible])
+    }, [addPatientIsVisible, currentPatient])
 
     useEffect(() => {
         console.log(selectedRows)
@@ -36,7 +38,7 @@ function PatientTableContainer() {
                     text="Add Patient"
                     onClick={addPatientHandler}
                 />
-                <CreatePatient
+                <PatientModal
                     isVisible={addPatientIsVisible || !!currentPatient.firstName}
                     setIsVisible={setAddPatientIsVisible}
                     currentPatient={currentPatient}

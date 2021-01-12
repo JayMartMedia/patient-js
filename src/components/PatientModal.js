@@ -4,10 +4,12 @@ import PATIENT_CONSTANTS from '../constants/patientConstants';
 import Button from './buttons/Button';
 import { Rest } from '../utility/rest';
 
-function CreatePatient({isVisible, setIsVisible, currentPatient, setCurrentPatient}) {
+function PatientModal({isVisible, setIsVisible, currentPatient, setCurrentPatient}) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
+
+    const isCreating = !currentPatient.id;
 
     useEffect(() => {
         setFirstName(currentPatient[PATIENT_CONSTANTS.FIRST_NAME])
@@ -15,14 +17,20 @@ function CreatePatient({isVisible, setIsVisible, currentPatient, setCurrentPatie
         setDateOfBirth(currentPatient[PATIENT_CONSTANTS.DATE_OF_BIRTH])
     }, [currentPatient])
 
-    const createPatient = async () => {
+    const upsertPatient = async () => {
         const patient = {
             'firstName' : firstName,
             'lastName' : lastName,
             'dateOfBirth' : dateOfBirth
         };
         
-        const response = await Rest.post(PATIENT_CONSTANTS.TYPE, patient)
+        let response;
+        if(isCreating){
+            response = await Rest.post(PATIENT_CONSTANTS.TYPE, patient)
+        }else{
+            patient.id = currentPatient.id
+            response = await Rest.put(PATIENT_CONSTANTS.TYPE, patient)
+        }
         if(response.status == 200){
             closeModal();
         }
@@ -32,17 +40,22 @@ function CreatePatient({isVisible, setIsVisible, currentPatient, setCurrentPatie
         setFirstName('');
         setLastName('');
         setDateOfBirth('');
-        setCurrentPatient({})
+        setCurrentPatient(
+            {
+                firstName: '',
+                id: null,
+                lastName: '',
+                dateOfBirth: ''
+            }
+        )
         setIsVisible(false);
     }
-
-    console.log('firstname: ', firstName);
 
     return (
         <Popup 
             isVisible={isVisible}
         >
-            <h2>Add Patient</h2>
+            <h2>{ isCreating ? 'Add' : 'Edit' } Patient</h2>
             <label>
                 First Name:
                 <input 
@@ -69,7 +82,7 @@ function CreatePatient({isVisible, setIsVisible, currentPatient, setCurrentPatie
             </label>
             <Button
                 text="Submit"
-                onClick={createPatient}
+                onClick={upsertPatient}
                 disabled={!(firstName && lastName && dateOfBirth)}
             />
             <Button
@@ -80,4 +93,4 @@ function CreatePatient({isVisible, setIsVisible, currentPatient, setCurrentPatie
     )
 }
 
-export default CreatePatient
+export default PatientModal
