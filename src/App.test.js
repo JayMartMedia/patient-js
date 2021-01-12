@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import App from './App';
-import PatientTable from './components/PatientTable';
+import PatientTableContainer from './components/PatientTableContainer';
 
 describe('App', () => {
   let wrapper;
@@ -15,27 +15,27 @@ describe('App', () => {
   });
 
   test('renders button to display table', () => {
-    const button = wrapper.find('button');
-    expect(button.text()).toContain('View Patients');
+    const button = wrapper.find('Button');
+    expect(button.props().text).toContain('View Patients');
   })
 
   test('table is hidden on initial render', () => {
-    const patientTable = wrapper.find(PatientTable);
-    expect(patientTable).toHaveLength(0);
+    const patientTableContainer = wrapper.find(PatientTableContainer);
+    expect(patientTableContainer).toHaveLength(0);
   })
 
   test('renders patient table after view patients is clicked', () => {
-    const button = wrapper.find('button');
+    const button = wrapper.find('Button');
     button.simulate('click');
 
-    const patientTable = wrapper.find(PatientTable);
-    expect(patientTable).toHaveLength(1);
+    const patientTableContainer = wrapper.find(PatientTableContainer);
+    expect(patientTableContainer).toHaveLength(1);
   })
 
   test('hides view patients button after it is clicked', () => {
-    const button = wrapper.find('button');
+    const button = wrapper.find('Button');
     button.simulate('click');
 
-    expect(wrapper.find('button')).toHaveLength(0);
+    expect(wrapper.find('Button')).toHaveLength(0);
   })
 });

@@ -1,6 +1,7 @@
 import { shallow } from 'enzyme';
 import PatientTable from './PatientTable';
 import { ReactTable } from './ReactTable';
+import Button from './buttons/Button';
 
 describe('PatientTable', () => {
     let wrapper, reactTable;
@@ -15,6 +16,6 @@ describe('PatientTable', () => {
     });
 
     it('contains appropriate amount of columns', () => {
-        expect(reactTable.props().columns).toHaveLength(5);
+        expect(reactTable.props().columns).toHaveLength(3);
     });
 });
