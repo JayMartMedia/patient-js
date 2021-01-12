@@ -77,6 +77,45 @@ describe('CreatePatient', () => {
         button.simulate('click');
         expect(setIsVisible).toHaveBeenCalledTimes(1);
     })
+
+    it('opens in edit mode when passes a patient with an id', () => {
+        const wrapper = shallow(
+            <CreatePatient 
+                isVisible={false}
+                setIsVisible={setIsVisible}
+                currentPatient={{
+                    firstName: 'John',
+                    id: '123abc-456def',
+                    lastName: 'Doe',
+                    dateOfBirth: '2000-01-01'
+                }}
+                setCurrentPatient={() => {}}
+            />
+        )
+        expect(wrapper.find('h2').text()).toEqual('Edit Patient')
+    })
+
+    it('calls the Rest.put method when submit button is clicked on edit', () => {
+        const wrapper = shallow(
+            <CreatePatient 
+                isVisible={false}
+                setIsVisible={setIsVisible}
+                currentPatient={{
+                    firstName: 'John',
+                    id: '123abc-456def',
+                    lastName: 'Doe',
+                    dateOfBirth: '2000-01-01'
+                }}
+                setCurrentPatient={() => {}}
+            />
+        )
+        const watcher = jest.spyOn(Rest, 'put').mockReturnValueOnce(
+            Promise.resolve({status: 200})
+        );
+        const button = wrapper.findWhere(element => element.is('Button') && element.props().text == 'Submit')
+        button.simulate('click');
+        expect(watcher).toHaveBeenCalledTimes(1);
+    })
 })
 
 /** Helper functions **/

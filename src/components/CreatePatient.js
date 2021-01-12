@@ -9,6 +9,8 @@ function CreatePatient({isVisible, setIsVisible, currentPatient, setCurrentPatie
     const [lastName, setLastName] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
 
+    const isCreating = !currentPatient.id;
+
     useEffect(() => {
         setFirstName(currentPatient[PATIENT_CONSTANTS.FIRST_NAME])
         setLastName(currentPatient[PATIENT_CONSTANTS.LAST_NAME])
@@ -22,7 +24,13 @@ function CreatePatient({isVisible, setIsVisible, currentPatient, setCurrentPatie
             'dateOfBirth' : dateOfBirth
         };
         
-        const response = await Rest.post(PATIENT_CONSTANTS.TYPE, patient)
+        let response;
+        if(isCreating){
+            response = await Rest.post(PATIENT_CONSTANTS.TYPE, patient)
+        }else{
+            patient.id = currentPatient.id
+            response = await Rest.put(PATIENT_CONSTANTS.TYPE, patient)
+        }
         if(response.status == 200){
             closeModal();
         }
@@ -32,17 +40,22 @@ function CreatePatient({isVisible, setIsVisible, currentPatient, setCurrentPatie
         setFirstName('');
         setLastName('');
         setDateOfBirth('');
-        setCurrentPatient({})
+        setCurrentPatient(
+            {
+                firstName: '',
+                id: null,
+                lastName: '',
+                dateOfBirth: ''
+            }
+        )
         setIsVisible(false);
     }
-
-    console.log('firstname: ', firstName);
 
     return (
         <Popup 
             isVisible={isVisible}
         >
-            <h2>Add Patient</h2>
+            <h2>{ isCreating ? 'Add' : 'Edit' } Patient</h2>
             <label>
                 First Name:
                 <input 
