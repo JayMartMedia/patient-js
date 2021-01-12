@@ -17,7 +17,7 @@ function PatientTableContainer() {
 
     useEffect( async () => {
         setData(await Rest.get(PATIENT_CONSTANTS.TYPE))
-    })
+    }, [addPatientIsVisible])
 
     return (
         <div>
