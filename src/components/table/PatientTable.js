@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { ReactTable } from './ReactTable';
-import Button from './buttons/Button';
-import { Add } from '@material-ui/icons';
 
 function PatientTable() {
     const [selectedRows, setSelectedRows] = useState([]);
