@@ -24,6 +24,23 @@ describe('Button', () => {
         expect(wrapper.find('button')).toHaveLength(1);
     })
 
+    it('is not disabled by default', () => {
+        expect(wrapper.find('button').prop('disabled')).toBeFalsy();
+    })
+
+    it('is disabled when disabled is set to true', () => {
+        wrapper = shallow(
+            <Button
+                text={textValue}
+                className={classNameValue}
+                onClick={onClick}
+                disabled={true}
+            />
+        )
+
+        expect(wrapper.find('button').prop('disabled')).toBeTruthy();
+    })
+
     it('renders the correct value for the text', () => {
         expect(wrapper.find('button').text()).toEqual(textValue);
     })
