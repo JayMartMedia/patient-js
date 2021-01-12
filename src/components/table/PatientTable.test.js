@@ -1,7 +1,6 @@
 import { shallow } from 'enzyme';
 import PatientTable from './PatientTable';
 import { ReactTable } from './ReactTable';
-import Button from './buttons/Button';
 
 describe('PatientTable', () => {
     let wrapper, reactTable;

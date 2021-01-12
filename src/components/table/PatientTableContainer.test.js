@@ -1,6 +1,5 @@
 import { shallow } from 'enzyme';
 
-import Button from './buttons/Button'
 import PatientTableContainer from './PatientTableContainer';
 import PatientTable from './PatientTable';
 

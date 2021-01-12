@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTable, usePagination, useRowSelect } from 'react-table';
 
-import Button from './buttons/Button';
-import IndeterminateCheckbox from './IndeterminateCheckbox';
+import Button from '../buttons/Button';
+import IndeterminateCheckbox from '../IndeterminateCheckbox';
 
 
 

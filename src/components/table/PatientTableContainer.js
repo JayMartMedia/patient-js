@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Button from './buttons/Button';
+import Button from '../buttons/Button';
 import PatientTable from './PatientTable';
 
 function PatientTableContainer() {
