@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ReactTable } from './ReactTable';
 
-function PatientTable({data}) {
-    const [selectedRows, setSelectedRows] = useState([]);
+function PatientTable({data, setSelectedRows}) {
 
     const columns = [
         { Header: 'First Name', accessor: 'firstName' },
@@ -15,6 +14,7 @@ function PatientTable({data}) {
             <ReactTable 
                 columns={columns}
                 data={data}
+                setSelectedRows={setSelectedRows}
             />
         </div>
     )
