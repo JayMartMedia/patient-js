@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Popup from './popup/Popup';
 import PATIENT_CONSTANTS from '../constants/patientConstants';
 import Button from './buttons/Button';
 import { Rest } from '../utility/rest';
 
-function CreatePatient({isVisible, setIsVisible}) {
+function CreatePatient({isVisible, setIsVisible, currentPatient, setCurrentPatient}) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
+
+    useEffect(() => {
+        setFirstName(currentPatient[PATIENT_CONSTANTS.FIRST_NAME])
+        setLastName(currentPatient[PATIENT_CONSTANTS.LAST_NAME])
+        setDateOfBirth(currentPatient[PATIENT_CONSTANTS.DATE_OF_BIRTH])
+    }, [currentPatient])
 
     const createPatient = async () => {
         const patient = {
@@ -18,16 +24,19 @@ function CreatePatient({isVisible, setIsVisible}) {
         
         const response = await Rest.post(PATIENT_CONSTANTS.TYPE, patient)
         if(response.status == 200){
-            setFirstName('');
-            setLastName('');
-            setDateOfBirth('');
-            setIsVisible(false);
+            closeModal();
         }
     }
 
     const closeModal = () => {
+        setFirstName('');
+        setLastName('');
+        setDateOfBirth('');
+        setCurrentPatient({})
         setIsVisible(false);
     }
+
+    console.log('firstname: ', firstName);
 
     return (
         <Popup 

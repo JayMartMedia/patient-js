@@ -1,7 +1,7 @@
 import React from 'react';
 import { ReactTable } from './ReactTable';
 
-function PatientTable({data, setSelectedRows}) {
+function PatientTable({data, setSelectedRows, setSelectedPatient}) {
 
     const columns = [
         { Header: 'First Name', accessor: 'firstName' },
@@ -15,6 +15,7 @@ function PatientTable({data, setSelectedRows}) {
                 columns={columns}
                 data={data}
                 setSelectedRows={setSelectedRows}
+                setSelectedPatient={setSelectedPatient}
             />
         </div>
     )

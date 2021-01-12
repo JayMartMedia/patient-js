@@ -6,7 +6,7 @@ import IndeterminateCheckbox from '../IndeterminateCheckbox';
 
 
 
-export const ReactTable = ({ columns, data, setSelectedRows }) => {
+export const ReactTable = ({ columns, data, setSelectedRows, setSelectedPatient }) => {
     // Use the state and functions returned from useTable to build your UI
     const {
       getTableProps,
@@ -64,6 +64,7 @@ export const ReactTable = ({ columns, data, setSelectedRows }) => {
               <div>
                 <Button 
                   text={'Edit'}
+                  onClick={() => {setSelectedPatient(row.original)}}
                 />
               </div>
             ),
