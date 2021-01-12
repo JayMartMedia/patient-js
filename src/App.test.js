@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import App from './App';
-import PatientTableContainer from './components/PatientTableContainer';
+import PatientTableContainer from './components/table/PatientTableContainer';
 
 describe('App', () => {
   let wrapper;
