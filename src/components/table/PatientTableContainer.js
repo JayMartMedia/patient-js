@@ -3,7 +3,7 @@ import PATIENT_CONSTANTS from '../../constants/patientConstants';
 import { Rest } from '../../utility/rest';
 
 import Button from '../buttons/Button';
-import CreatePatient from '../CreatePatient';
+import PatientModal from '../PatientModal';
 import PatientTable from './PatientTable';
 
 function PatientTableContainer() {
@@ -38,7 +38,7 @@ function PatientTableContainer() {
                     text="Add Patient"
                     onClick={addPatientHandler}
                 />
-                <CreatePatient
+                <PatientModal
                     isVisible={addPatientIsVisible || !!currentPatient.firstName}
                     setIsVisible={setAddPatientIsVisible}
                     currentPatient={currentPatient}

@@ -1,20 +1,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-
-import PATIENT_CONSTANTS from '../constants/patientConstants'
 import { Rest } from '../utility/rest';
-
-import CreatePatient from './CreatePatient';
+import PatientModal from './PatientModal';
 import Popup from './popup/Popup';
 
-describe('CreatePatient', () => {
+describe('PatientModal', () => {
     let wrapper;
 
     const setIsVisible = jest.fn();
 
     beforeEach(() => {
         wrapper = shallow(
-            <CreatePatient 
+            <PatientModal 
                 isVisible={false}
                 setIsVisible={setIsVisible}
                 currentPatient={{}}
@@ -80,7 +77,7 @@ describe('CreatePatient', () => {
 
     it('opens in edit mode when passes a patient with an id', () => {
         const wrapper = shallow(
-            <CreatePatient 
+            <PatientModal 
                 isVisible={false}
                 setIsVisible={setIsVisible}
                 currentPatient={{
@@ -97,7 +94,7 @@ describe('CreatePatient', () => {
 
     it('calls the Rest.put method when submit button is clicked on edit', () => {
         const wrapper = shallow(
-            <CreatePatient 
+            <PatientModal 
                 isVisible={false}
                 setIsVisible={setIsVisible}
                 currentPatient={{

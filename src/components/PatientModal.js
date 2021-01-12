@@ -4,7 +4,7 @@ import PATIENT_CONSTANTS from '../constants/patientConstants';
 import Button from './buttons/Button';
 import { Rest } from '../utility/rest';
 
-function CreatePatient({isVisible, setIsVisible, currentPatient, setCurrentPatient}) {
+function PatientModal({isVisible, setIsVisible, currentPatient, setCurrentPatient}) {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [dateOfBirth, setDateOfBirth] = useState('');
@@ -17,7 +17,7 @@ function CreatePatient({isVisible, setIsVisible, currentPatient, setCurrentPatie
         setDateOfBirth(currentPatient[PATIENT_CONSTANTS.DATE_OF_BIRTH])
     }, [currentPatient])
 
-    const createPatient = async () => {
+    const upsertPatient = async () => {
         const patient = {
             'firstName' : firstName,
             'lastName' : lastName,
@@ -82,7 +82,7 @@ function CreatePatient({isVisible, setIsVisible, currentPatient, setCurrentPatie
             </label>
             <Button
                 text="Submit"
-                onClick={createPatient}
+                onClick={upsertPatient}
                 disabled={!(firstName && lastName && dateOfBirth)}
             />
             <Button
@@ -93,4 +93,4 @@ function CreatePatient({isVisible, setIsVisible, currentPatient, setCurrentPatie
     )
 }
 
-export default CreatePatient
+export default PatientModal
