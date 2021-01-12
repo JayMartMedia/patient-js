@@ -9,27 +9,34 @@ import PatientTable from './PatientTable';
 function PatientTableContainer() {
     const [data, setData] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
-
     const [currentPatient, setCurrentPatient] = useState({
         firstName: '',
         id: null,
         lastName: '',
         dateOfBirth: ''
     });
-
     const [addPatientIsVisible, setAddPatientIsVisible] = useState(false);
 
     const addPatientHandler = () => {
         setAddPatientIsVisible(true);
     }
 
-    useEffect( async () => {
+    const deleteSelectedPatientsHandler = async () => {
+        const rowIds = selectedRows.map(row => row.id)
+        for( const rowId of rowIds ){
+            await Rest.delete(PATIENT_CONSTANTS.TYPE, rowId);
+        }
+
+        refreshData()
+    }
+
+    const refreshData = async () => {
         setData(await Rest.get(PATIENT_CONSTANTS.TYPE))
-    }, [addPatientIsVisible, currentPatient])
+    }
 
     useEffect(() => {
-        console.log(selectedRows)
-    }, [selectedRows])
+        refreshData();
+    }, [addPatientIsVisible, currentPatient])
 
     return (
         <div>
@@ -46,6 +53,7 @@ function PatientTableContainer() {
                 />
                 <Button 
                     text="Delete Selected"
+                    onClick={deleteSelectedPatientsHandler}
                 />
             </div>
             <PatientTable 
