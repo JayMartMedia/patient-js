@@ -39,6 +39,7 @@ describe('ReactTable', () => {
         wrapper = shallow(<ReactTable 
             columns={columns}
             data={data_3}
+            setSelectedRows={() => {}}
         />);
     })
 
@@ -46,6 +47,7 @@ describe('ReactTable', () => {
         const wrapper2 = mount(<ReactTable 
             columns={columns}
             data={data_3}
+            setSelectedRows={() => {}}
         />);
     })
 
@@ -84,6 +86,7 @@ describe('ReactTable', () => {
         const wrapper = shallow(<ReactTable
             columns={columns}
             data={data_12}
+            setSelectedRows={() => {}}
         />);
 
         // next and last buttons should be enabled 
@@ -104,6 +107,7 @@ describe('ReactTable', () => {
         const wrapper = shallow(<ReactTable
             columns={columns}
             data={data_12}
+            setSelectedRows={() => {}}
         />);
 
         const nextPageButton = wrapper.findWhere(element => {
@@ -131,6 +135,7 @@ describe('ReactTable', () => {
         const wrapper = shallow(<ReactTable
             columns={columns}
             data={data_12}
+            setSelectedRows={() => {}}
         />);
 
         // check that last page button works
@@ -161,6 +166,7 @@ describe('ReactTable', () => {
         const wrapper = shallow(<ReactTable
             columns={columns}
             data={data_12}
+            setSelectedRows={() => {}}
         />);
 
         const numberInputField = wrapper.findWhere(element => {
@@ -178,6 +184,7 @@ describe('ReactTable', () => {
         const wrapper = shallow(<ReactTable
             columns={columns}
             data={data_12}
+            setSelectedRows={() => {}}
         />);
 
         const numberInputField = wrapper.findWhere(element => {
@@ -195,6 +202,7 @@ describe('ReactTable', () => {
         const wrapper = shallow(<ReactTable
             columns={columns}
             data={data_12}
+            setSelectedRows={() => {}}
         />);
 
         // set row count to 20

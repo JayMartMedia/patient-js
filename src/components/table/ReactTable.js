@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useTable, usePagination, useRowSelect } from 'react-table';
 
 import Button from '../buttons/Button';
@@ -6,7 +6,7 @@ import IndeterminateCheckbox from '../IndeterminateCheckbox';
 
 
 
-export const ReactTable = ({ columns, data }) => {
+export const ReactTable = ({ columns, data, setSelectedRows }) => {
     // Use the state and functions returned from useTable to build your UI
     const {
       getTableProps,
@@ -71,6 +71,10 @@ export const ReactTable = ({ columns, data }) => {
         ])
       }
     )
+
+    useEffect(() => {
+      setSelectedRows(selectedFlatRows.map(row => row.original));
+    }, [selectedRowIds])
   
     // Render the UI for the table
     return (

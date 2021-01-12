@@ -7,9 +7,10 @@ import CreatePatient from '../CreatePatient';
 import PatientTable from './PatientTable';
 
 function PatientTableContainer() {
+    const [data, setData] = useState([]);
+    const [selectedRows, setSelectedRows] = useState([]);
 
     const [addPatientIsVisible, setAddPatientIsVisible] = useState(false);
-    const [data, setData] = useState([]);
 
     const addPatientHandler = () => {
         setAddPatientIsVisible(true);
@@ -18,6 +19,10 @@ function PatientTableContainer() {
     useEffect( async () => {
         setData(await Rest.get(PATIENT_CONSTANTS.TYPE))
     }, [addPatientIsVisible])
+
+    useEffect(() => {
+        console.log(selectedRows)
+    }, [selectedRows])
 
     return (
         <div>
@@ -36,6 +41,7 @@ function PatientTableContainer() {
             </div>
             <PatientTable 
                 data={data}
+                setSelectedRows={setSelectedRows}
             />
         </div>
     )
