@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-import PatientTableContainer from './components/PatientTableContainer';
+import PatientTableContainer from './components/table/PatientTableContainer';
 import Button from './components/buttons/Button';
 
 import {Rest} from './utility/rest';
