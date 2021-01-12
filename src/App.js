@@ -1,9 +1,14 @@
 import {useState} from 'react';
 
-import PatientTable from './components/PatientTable';
+import PatientTableContainer from './components/PatientTableContainer';
+import Button from './components/buttons/Button';
+
+import {Rest} from './utility/rest';
 
 function App() {
   const [viewPatients, setViewPatients] = useState(false);
+
+  window.Rest = Rest;
 
   const onViewPatientsClick = () => {
     setViewPatients(true);
@@ -16,8 +21,11 @@ function App() {
       </header>
       { 
         viewPatients ? 
-        <PatientTable /> : 
-        <button onClick={onViewPatientsClick}>View Patients</button>
+        <PatientTableContainer /> : 
+        <Button 
+          text='View Patients'
+          onClick={onViewPatientsClick}
+        />
       }
     </div>
   );

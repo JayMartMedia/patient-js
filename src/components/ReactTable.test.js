@@ -29,7 +29,6 @@ const columns = [
     { Header: '', accessor: 'selected'},
     { Header: 'First Name', accessor: 'firstName' },
     { Header: 'Last Name', accessor: 'lastName' },
-    { Header: 'Edit', accessor: 'edit' }
 ];
 
 
@@ -51,7 +50,7 @@ describe('ReactTable', () => {
     })
 
     it('renders a column header for each column', () => {
-        expect(wrapper.find('th')).toHaveLength(columns.length + 1);
+        expect(wrapper.find('th')).toHaveLength(columns.length + 2);
     })
 
     it('has the correct title for each column', () => {
