@@ -27,4 +27,16 @@ describe('PatientTableContainer', () => {
         })
         expect(deleteButton).toHaveLength(1);
     })
+
+    it('hides the add patient modal by default', () => {
+        expect(wrapper.find('CreatePatient').props().isVisible).toEqual(false);
+    })
+
+    it('displays the create patient modal when add patient button is clicked', () => {
+        const addButton = wrapper.findWhere(element => {
+            return element.is('Button') && element.props().text == "Add Patient"
+        })
+        addButton.simulate('click')
+        expect(wrapper.find('CreatePatient').props().isVisible).toEqual(true);
+    })
 })
