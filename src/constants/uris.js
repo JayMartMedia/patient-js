@@ -1,3 +1,3 @@
-const API_URI = "api";
+const API_URI = "";
 
 export {API_URI}
