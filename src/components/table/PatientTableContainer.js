@@ -10,6 +10,11 @@ function PatientTableContainer() {
     const [data, setData] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
 
+    const [currentPatient, setCurrentPatient] = useState({
+        firstName: '',
+        lastName: '',
+        dateOfBirth: ''
+    });
     const [addPatientIsVisible, setAddPatientIsVisible] = useState(false);
 
     const addPatientHandler = () => {
@@ -32,8 +37,10 @@ function PatientTableContainer() {
                     onClick={addPatientHandler}
                 />
                 <CreatePatient
-                    isVisible={addPatientIsVisible}
+                    isVisible={addPatientIsVisible || !!currentPatient.firstName}
                     setIsVisible={setAddPatientIsVisible}
+                    currentPatient={currentPatient}
+                    setCurrentPatient={setCurrentPatient}
                 />
                 <Button 
                     text="Delete Selected"
@@ -42,6 +49,7 @@ function PatientTableContainer() {
             <PatientTable 
                 data={data}
                 setSelectedRows={setSelectedRows}
+                setSelectedPatient={setCurrentPatient}
             />
         </div>
     )

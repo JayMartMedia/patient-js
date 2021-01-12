@@ -17,6 +17,8 @@ describe('CreatePatient', () => {
             <CreatePatient 
                 isVisible={false}
                 setIsVisible={setIsVisible}
+                currentPatient={{}}
+                setCurrentPatient={() => {}}
             />
         )
     })
