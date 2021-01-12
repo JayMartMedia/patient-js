@@ -3,8 +3,7 @@ import { API_URI } from '../constants/uris';
 const Rest = {
     delete : async (type, id) => {
         const url = API_URI+"/"+type+"/"+id;
-        return await fetch(url, {method: 'DELETE'})
-            .then(response => response.json());
+        return await fetch(url, {method: 'DELETE'});
     },
     get : async (type, id = '') => {
         const url = API_URI+"/"+type+"/"+id;
@@ -21,7 +20,6 @@ const Rest = {
                 },
                 method: 'POST'
             })
-            .then(response =>  response.json());
     },
     put : async (type, object) => {
         const url = API_URI+'/'+type+'/'+object['id'];
@@ -33,7 +31,6 @@ const Rest = {
                 },
                 method: 'PUT'
             })
-            .then(response => response.json())
     },
 }
 

@@ -39,13 +39,14 @@ global.fetch = (url, requestObj) => {
     const method = requestObj.method; 
 
     let retval;
-    if( method == 'DELETE' ) retval = DELETE_JSON;
+    if( method == 'DELETE' ) retval = '';
     if( method == 'GET' ) retval = GET_JSON;
-    if( method == 'POST' ) retval = POST_JSON;
-    if( method == 'PUT' ) retval = PUT_JSON;
+    if( method == 'POST' ) retval = '';
+    if( method == 'PUT' ) retval = '';
 
     return Promise.resolve({
-        json: () => Promise.resolve(retval)
+        json: () => Promise.resolve(retval),
+        response: 200
     })
 };
 
@@ -60,7 +61,7 @@ describe ('Rest.js', () => {
             API_URI+'/'+ITEM.TYPE+'/'+DELETE_JSON['id'],
             {method: 'DELETE'}
         );
-        expect(http_response).toEqual(DELETE_JSON);
+        expect(http_response.response).toEqual(200);
     });
 
     it('returns the http_response of the get fetch request', async () => {
@@ -84,7 +85,7 @@ describe ('Rest.js', () => {
                 method: 'POST'
             }
         );
-        expect(http_response).toEqual(POST_JSON);
+        expect(http_response.response).toEqual(200);
     });
 
     it('returns the http_response of the put fetch request', async () => {
@@ -99,7 +100,7 @@ describe ('Rest.js', () => {
                 method: 'PUT'
             }
         );
-        expect(http_response).toEqual(PUT_JSON);
+        expect(http_response.response).toEqual(200);
     });
 
 
