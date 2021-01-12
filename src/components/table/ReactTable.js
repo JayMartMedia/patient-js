@@ -28,6 +28,7 @@ export const ReactTable = ({ columns, data }) => {
       {
         columns,
         data,
+        autoResetPage: false
       },
       usePagination,
       useRowSelect,
