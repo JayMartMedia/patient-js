@@ -75,7 +75,7 @@ export const ReactTable = ({ columns, data, setSelectedRows, setSelectedPatient 
 
     useEffect(() => {
       setSelectedRows(selectedFlatRows.map(row => row.original));
-    }, [selectedRowIds])
+    }, [selectedRowIds]) // eslint-disable-line react-hooks/exhaustive-deps
   
     // Render the UI for the table
     return (

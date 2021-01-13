@@ -31,7 +31,7 @@ function PatientModal({isVisible, setIsVisible, currentPatient, setCurrentPatien
             patient.id = currentPatient.id
             response = await Rest.put(PATIENT_CONSTANTS.TYPE, patient)
         }
-        if(response.status == 200){
+        if(response.status === 200){
             closeModal();
         }
     }
