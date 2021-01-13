@@ -3,6 +3,7 @@ import Popup from './popup/Popup';
 import PATIENT_CONSTANTS from '../constants/patientConstants';
 import Button from './buttons/Button';
 import { Rest } from '../utility/rest';
+import classes from './PatientModal.module.scss';
 
 function PatientModal({isVisible, setIsVisible, currentPatient, setCurrentPatient}) {
     const [firstName, setFirstName] = useState('');
@@ -55,40 +56,50 @@ function PatientModal({isVisible, setIsVisible, currentPatient, setCurrentPatien
         <Popup 
             isVisible={isVisible}
         >
-            <h2>{ isCreating ? 'Add' : 'Edit' } Patient</h2>
-            <label>
-                First Name:
-                <input 
-                    type='text' 
-                    onChange={e => setFirstName(e.target.value)} 
-                    value={firstName} 
-                />
-            </label>
-            <label>
-                Last Name:
-                <input 
-                    type='text' 
-                    onChange={e => setLastName(e.target.value)} 
-                    value={lastName}
-                />
-            </label>
-            <label>
-                Date of Birth:
-                <input 
-                    type='date' 
-                    onChange={e => setDateOfBirth(e.target.value)} 
-                    value={dateOfBirth}
-                />
-            </label>
-            <Button
-                text="Submit"
-                onClick={upsertPatient}
-                disabled={!(firstName && lastName && dateOfBirth)}
-            />
-            <Button
-                text="Cancel"
-                onClick={closeModal}
-            />
+            <dialog className={classes.container}>
+                <h2 className={classes.h2}>{ isCreating ? 'Add' : 'Edit' } Patient</h2>
+                <label className={classes.label}>
+                    First Name:
+                    <input 
+                        className={classes.textInput}
+                        type='text' 
+                        onChange={e => setFirstName(e.target.value)} 
+                        value={firstName} 
+                    />
+                </label>
+                <label className={classes.label}>
+                    Last Name:
+                    <input 
+                        className={classes.textInput}
+                        type='text' 
+                        onChange={e => setLastName(e.target.value)} 
+                        value={lastName}
+                    />
+                </label>
+                <label className={classes.label}>
+                    Date of Birth:
+                    <input 
+                        className={classes.dateInput}
+                        type='date' 
+                        onChange={e => setDateOfBirth(e.target.value)} 
+                        value={dateOfBirth}
+                    />
+                </label>
+                <div>
+                    <Button
+                        className={classes.submitButton}
+                        text="Submit"
+                        onClick={upsertPatient}
+                        disabled={!(firstName && lastName && dateOfBirth)}
+                    />
+                    <Button
+                        className={classes.cancelButton}
+                        text="Cancel"
+                        onClick={closeModal}
+                    />
+                    <div className={classes.clearFloat} />
+                </div>
+            </dialog>
         </Popup>
     )
 }

@@ -1,0 +1,48 @@
+.container{
+    display:block;
+    background-color: #fefefe;
+    font-size: 2em;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 1em 3em;
+    border: 1px solid #888;
+    // box-sizing: border-box;
+    width: 60%; /* Could be more or less, depending on screen size */
+}
+
+.h2{
+    font-size: 1.5em;
+    margin-top:.2em;
+    text-align: center;
+}
+
+.label{
+    font-size: 1em;
+    display:block;
+    padding:.2em;
+}
+.textInput, .dateInput{
+    font-size: 1em;
+    float:right;
+}
+.submitButton, .cancelButton{
+    border-radius: .2em;
+    float: right;
+    font-size: 26px;
+    margin:.2em;
+    padding: .2em .5em;
+}
+
+.submitButton{
+    background: green;
+    color: white;
+    &:hover{
+        opacity: .9;
+    }
+    &:disabled{
+        opacity: .5;
+    }
+}
+
+.clearFloat{
+    clear:both;
+}
