@@ -1,5 +1,6 @@
 import React from 'react';
 import { ReactTable } from './ReactTable';
+import classes from './PatientTable.module.scss';
 
 function PatientTable({data, setSelectedRows, setSelectedPatient}) {
 
@@ -10,7 +11,7 @@ function PatientTable({data, setSelectedRows, setSelectedPatient}) {
     ];
 
     return (
-        <div>
+        <div className={classes.table}>
             <ReactTable 
                 columns={columns}
                 data={data}

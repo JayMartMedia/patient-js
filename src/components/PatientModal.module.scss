@@ -1,7 +1,7 @@
 .container{
     display:block;
     background-color: #fefefe;
-    font-size: 2em;
+    font-size: 1.5em;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 1em 3em;
     border: 1px solid #888;
@@ -22,7 +22,7 @@
 }
 .textInput, .dateInput{
     font-size: 1em;
-    float:right;
+    width: 100%;
 }
 .submitButton, .cancelButton{
     border-radius: .2em;

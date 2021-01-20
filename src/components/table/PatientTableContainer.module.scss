@@ -1,0 +1,12 @@
+.container{
+    table{
+        border-collapse: collapse;
+    }
+
+    tr{
+        border-bottom: 1px solid #777;
+    }
+    tr:nth-child(even) {
+        background-color: #eee;
+    }
+}

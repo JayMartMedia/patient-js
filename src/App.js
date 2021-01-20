@@ -3,6 +3,7 @@ import PatientTableContainer from './components/table/PatientTableContainer';
 import Button from './components/buttons/Button';
 import {Rest} from './utility/rest';
 
+import buttonClasses from './components/buttons/Button.module.scss';
 import './App.scss';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         viewPatients ? 
         <PatientTableContainer /> : 
         <Button 
+          className={buttonClasses.button}
           text='View Patients'
           onClick={onViewPatientsClick}
         />
