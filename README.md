@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# Demo Patient Tracker App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app was built as a way to get more familiar with some popular development frameworks and libraries.
 
-## Available Scripts
+The app has a simple UI. It is not visually spectacular. The purpose is to demonstrate the knowledge of the tools listed below, not to demonstrate graphic design skills.
 
-In the project directory, you can run:
+## Tools used
++ Frontend (this repo)
+    + [React.js](https://reactjs.org/) - Most popular JavaScript framework on NPM according to [NPM Trends](https://www.npmtrends.com/react-vs-angular-vs-vue-vs-ember-source-vs-@angular/core)
+    + [Jest](https://jestjs.io/) - JavaScript testing libary included with create-react-app
+    + [Enzyme](https://enzymejs.github.io/enzyme/) - Popular React testing framework originally developed by Airbnb
+    + [react-table](https://react-table.tanstack.com/) - Popular lightweight table library for React (One of the highest starred React table libraries on Github ~13.5k)
+    + [CSS Modules](https://github.com/css-modules/css-modules) - CSS libary used to locally scope classes
+    + [SASS](https://sass-lang.com/) - CSS preprocessor which adds the usage of variables, nesting and more to standard CSS
++ Backend [patient-service](https://github.com/JayMartMedia/patient-service)
+    + [Spring Boot](https://spring.io/projects/spring-boot) - Popular Java framework for building REST APIs
+    + [PostgreSQL](https://www.postgresql.org/) - Open source relational database system
++ Infrastructure [patient-infrastructure](https://github.com/JayMartMedia/patient-infrastructure)
+    + [Docker](https://www.docker.com/) - Containerization tool used for deployment flexibility
+    + [NGINX](https://www.nginx.com/) - Open source tool used for all things networking, used to set up a reverse proxy in this project
+    
+# Starting the application
 
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Clone each of the repositoris listed above
+2. In the patient-infrastructure project
+    1. Run the `./start-service.sh` script to start the PostgreSQL docker container and create the initial database
+    2. Start nginx using the nginx.conf file in the project `nginx -c $(pwd)/nginx.conf`
+3. In the patient-service project
+    1. Run the `./start-service.sh` script to start the Spring application in a docker container
+3. In the patient-js project
+    + Run the `./start-service.sh` script to start up the React application in a docker container
+    + (Alternative) Run `npm start` if you would like the React app to update changes in realtime (i.e. when developing)
