@@ -2,7 +2,7 @@
 
 This app was built as a way to get more familiar with some popular development frameworks and libraries.
 
-The app has a simple UI. It is not visually spectacular. The purpose is to demonstrate the knowledge of the tools listed below, not to demonstrate graphic design skills.
+This app allows a user to view, add, edit, and delete patients stored in the PostgreSQL database through a web gui. The app has a simple UI. It is not visually spectacular. The purpose is to demonstrate the knowledge of the tools listed below, not to demonstrate graphic design skills.
 
 ## Tools used
 + Frontend (this repo)
