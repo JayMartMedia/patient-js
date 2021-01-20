@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useTable, usePagination, useRowSelect } from 'react-table';
+import classes from './ReactTable.module.scss';
+import buttonClasses from '../buttons/Button.module.scss';
 
 import Button from '../buttons/Button';
 import IndeterminateCheckbox from '../IndeterminateCheckbox';
@@ -40,14 +42,14 @@ export const ReactTable = ({ columns, data, setSelectedRows, setSelectedPatient 
             // The header can use the table's getToggleAllRowsSelectedProps method
             // to render a checkbox
             Header: ({ getToggleAllPageRowsSelectedProps }) => (
-              <div>
+              <div className={classes.checkboxCol}>
                 <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
               </div>
             ),
             // The cell can use the individual row's getToggleRowSelectedProps method
             // to the render a checkbox
             Cell: ({ row }) => (
-              <div>
+              <div className={classes.checkboxCol}>
                 <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
               </div>
             ),
@@ -63,6 +65,7 @@ export const ReactTable = ({ columns, data, setSelectedRows, setSelectedPatient 
             Cell: ({ row }) => (
               <div>
                 <Button 
+                  className={buttonClasses.button}
                   text={'Edit'}
                   onClick={() => {setSelectedPatient(row.original)}}
                 />
@@ -96,14 +99,14 @@ export const ReactTable = ({ columns, data, setSelectedRows, setSelectedPatient 
               return (
                 <tr {...row.getRowProps()}>
                   {row.cells.map(cell => {
-                    return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                    return <td {...cell.getCellProps()}><div>{cell.render('Cell')}</div></td>
                   })}
                 </tr>
               )
             })}
           </tbody>
         </table>
-        <div className="pagination">
+        <div className={classes.pagination}>
           <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
             {'<<'}
           </button>{' '}

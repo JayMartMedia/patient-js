@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import PATIENT_CONSTANTS from '../../constants/patientConstants';
 import { Rest } from '../../utility/rest';
+import classes from './PatientTableContainer.module.scss';
+import buttonClasses from '../buttons/Button.module.scss';
 
 import Button from '../buttons/Button';
 import PatientModal from '../PatientModal';
@@ -39,9 +41,10 @@ function PatientTableContainer() {
     }, [addPatientIsVisible, currentPatient])
 
     return (
-        <div>
+        <div className={classes.container}>
             <div>
                 <Button 
+                    className={buttonClasses.button}
                     text="Add Patient"
                     onClick={addPatientHandler}
                 />
@@ -52,6 +55,7 @@ function PatientTableContainer() {
                     setCurrentPatient={setCurrentPatient}
                 />
                 <Button 
+                    className={buttonClasses.button}
                     text="Delete Selected"
                     onClick={deleteSelectedPatientsHandler}
                 />
