@@ -4,7 +4,7 @@ import Button from './components/buttons/Button';
 import {Rest} from './utility/rest';
 
 import buttonClasses from './components/buttons/Button.module.scss';
-import './App.scss';
+import classes from './App.module.scss';
 
 function App() {
   const [viewPatients, setViewPatients] = useState(false);
@@ -23,11 +23,14 @@ function App() {
       { 
         viewPatients ? 
         <PatientTableContainer /> : 
+        <>
         <Button 
           className={buttonClasses.button}
           text='View Patients'
           onClick={onViewPatientsClick}
         />
+        <img className={classes.backgroundImage} src='/landing.jpeg' />
+        </>
       }
     </div>
   );
