@@ -1,27 +1,29 @@
 # Demo Patient Tracker App Frontend
 
+### Purpose
 This app was built as a way to get more familiar with some popular development frameworks and libraries.
 
 This app allows a user to view, add, edit, and delete patients stored in the PostgreSQL database through a web gui. The app has a simple UI. It is not visually spectacular. The purpose is to demonstrate the knowledge of the tools listed below, not to demonstrate graphic design skills.
 
+### Business Use Case
 The use case could be any web application where you need a user to be able to view, add, edit, and/or delete items specifically from a table. For example, keeping a list of patients, users, customers, orders, etc.
 
-## Tools used
-+ Frontend (this repo)
+## Tools Used
++ #### Frontend (this repo)
     + [React.js](https://reactjs.org/) - Most popular JavaScript framework on NPM according to [NPM Trends](https://www.npmtrends.com/react-vs-angular-vs-vue-vs-ember-source-vs-@angular/core)
     + [Jest](https://jestjs.io/) - JavaScript testing libary included with create-react-app
     + [Enzyme](https://enzymejs.github.io/enzyme/) - Popular React testing framework originally developed by Airbnb
     + [react-table](https://react-table.tanstack.com/) - Popular lightweight table library for React (One of the highest starred React table libraries on Github ~13.5k)
     + [CSS Modules](https://github.com/css-modules/css-modules) - CSS libary used to locally scope classes
     + [SASS](https://sass-lang.com/) - CSS preprocessor which adds the usage of variables, nesting and more to standard CSS
-+ Backend [patient-service](https://github.com/JayMartMedia/patient-service)
++ #### Backend [patient-service](https://github.com/JayMartMedia/patient-service)
     + [Spring Boot](https://spring.io/projects/spring-boot) - Popular Java framework for building REST APIs
     + [PostgreSQL](https://www.postgresql.org/) - Open source relational database system
-+ Infrastructure [patient-infrastructure](https://github.com/JayMartMedia/patient-infrastructure)
++ #### Infrastructure [patient-infrastructure](https://github.com/JayMartMedia/patient-infrastructure)
     + [Docker](https://www.docker.com/) - Containerization tool used for deployment flexibility
     + [NGINX](https://www.nginx.com/) - Open source tool used for all things networking, used to set up a reverse proxy in this project
     
-# Starting the application
+# Starting the Application
 
 1. Clone each of the repositories listed above
 2. In the patient-infrastructure project
