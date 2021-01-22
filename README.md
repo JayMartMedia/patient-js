@@ -1,8 +1,10 @@
-# Demo Patient Tracker App
+# Demo Patient Tracker App Frontend
 
 This app was built as a way to get more familiar with some popular development frameworks and libraries.
 
 This app allows a user to view, add, edit, and delete patients stored in the PostgreSQL database through a web gui. The app has a simple UI. It is not visually spectacular. The purpose is to demonstrate the knowledge of the tools listed below, not to demonstrate graphic design skills.
+
+The use case could be any web application where you need a user to be able to view, add, edit, and/or delete items specifically from a table. For example, keeping a list of patients, users, customers, orders, etc.
 
 ## Tools used
 + Frontend (this repo)
@@ -21,7 +23,7 @@ This app allows a user to view, add, edit, and delete patients stored in the Pos
     
 # Starting the application
 
-1. Clone each of the repositoris listed above
+1. Clone each of the repositories listed above
 2. In the patient-infrastructure project
     1. Run the `./start-service.sh` script to start the PostgreSQL docker container and create the initial database
     2. Start nginx using the nginx.conf file in the project `nginx -c $(pwd)/nginx.conf`
