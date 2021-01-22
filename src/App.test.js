@@ -9,10 +9,10 @@ describe('App', () => {
     wrapper = shallow(<App />);
   })
 
-  test('renders title', () => {
-    const h1 = wrapper.find('h1');
-    expect(h1.text()).toContain('Demo Patient Tracker');
-  });
+  test('renders landing page', () => {
+    const landingPage = wrapper.find('LandingPage');
+    expect(landingPage).toHaveLength(1);
+  })
 
   test('renders button to display table', () => {
     const button = wrapper.find('Button');

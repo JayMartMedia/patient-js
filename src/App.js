@@ -1,15 +1,12 @@
 import {useState} from 'react';
 import PatientTableContainer from './components/table/PatientTableContainer';
+import LandingPage from './components/LandingPage';
 import Button from './components/buttons/Button';
-import {Rest} from './utility/rest';
-
 import buttonClasses from './components/buttons/Button.module.scss';
-import classes from './App.module.scss';
+import classes from './components/LandingPage.module.scss';
 
 function App() {
   const [viewPatients, setViewPatients] = useState(false);
-
-  window.Rest = Rest;
 
   const onViewPatientsClick = () => {
     setViewPatients(true);
@@ -17,19 +14,18 @@ function App() {
 
   return (
     <div className="app">
-      <header className="App-header">
-        <h1>Demo Patient Tracker</h1>
-      </header>
+      <img className={classes.backgroundImage} src='/landing.jpeg' />
       { 
         viewPatients ? 
         <PatientTableContainer /> : 
         <>
-        <Button 
-          className={buttonClasses.button}
-          text='View Patients'
-          onClick={onViewPatientsClick}
-        />
-        <img className={classes.backgroundImage} src='/landing.jpeg' />
+          <LandingPage>
+            <Button 
+              className={buttonClasses.button}
+              text='View Patients'
+              onClick={onViewPatientsClick}
+            />
+          </LandingPage>
         </>
       }
     </div>
