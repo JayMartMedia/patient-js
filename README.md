@@ -34,3 +34,4 @@ The use case could be any web application where you need a user to be able to vi
 3. In the patient-js project
     + Run the `./start-service.sh` script to start up the React application in a docker container
     + (Alternative) Run `npm start` if you would like the React app to update changes in realtime (i.e. when developing)
+#### View the application at [http://localhost/patient-js/](http://localhost/patient-js/)
