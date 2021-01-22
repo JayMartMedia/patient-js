@@ -42,6 +42,7 @@ function PatientTableContainer() {
 
     return (
         <div className={classes.container}>
+            <h1>Patients</h1>
             <div>
                 <Button 
                     className={buttonClasses.button}
