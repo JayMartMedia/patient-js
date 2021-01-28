@@ -1,33 +1,30 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import AuthUtil from './authentication/authenticationUtility';
 import PatientTableContainer from './components/table/PatientTableContainer';
-import LandingPage from './components/LandingPage';
-import Button from './components/buttons/Button';
-import buttonClasses from './components/buttons/Button.module.scss';
-import classes from './components/LandingPage.module.scss';
+import classes from './App.module.scss';
 
 function App() {
-  const [viewPatients, setViewPatients] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
 
-  const onViewPatientsClick = () => {
-    setViewPatients(true);
-  };
+  // on initial load, check if user is logged in
+  useEffect(() => {
+    (async () => {
+      const user = await AuthUtil.getCurrentUser()
+      const isLoggedIn = !!(user.principal && user.principal.enabled);
+
+      if(!isLoggedIn){
+        window.location.href='/login'
+      }else{
+        setCurrentUser(user);
+      }
+    })();
+  }, [])
 
   return (
+    currentUser && 
     <div className="app">
-      <img className={classes.backgroundImage} src='/landing.jpeg' />
-      { 
-        viewPatients ? 
-        <PatientTableContainer /> : 
-        <>
-          <LandingPage>
-            <Button 
-              className={buttonClasses.button}
-              text='View Patients'
-              onClick={onViewPatientsClick}
-            />
-          </LandingPage>
-        </>
-      }
+      <img className={classes.backgroundImage} src='/landing.jpeg' alt="page background"/>
+      <PatientTableContainer currentUser={currentUser} />
     </div>
   );
 }

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import PATIENT_CONSTANTS from '../../constants/patientConstants';
+import AuthUtil from '../../authentication/authenticationUtility';
 import { Rest } from '../../utility/rest';
 import classes from './PatientTableContainer.module.scss';
 import buttonClasses from '../buttons/Button.module.scss';
-
 import Button from '../buttons/Button';
 import PatientModal from '../PatientModal';
 import PatientTable from './PatientTable';
 
-function PatientTableContainer() {
+function PatientTableContainer({currentUser}) {
     const [data, setData] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
     const [currentPatient, setCurrentPatient] = useState({
@@ -18,6 +18,10 @@ function PatientTableContainer() {
         dateOfBirth: ''
     });
     const [addPatientIsVisible, setAddPatientIsVisible] = useState(false);
+
+    const onLogoutButtonClick = () => {
+        window.location.href='/logout'
+    }
 
     const addPatientHandler = () => {
         setAddPatientIsVisible(true);
@@ -42,29 +46,42 @@ function PatientTableContainer() {
 
     return (
         <div className={classes.container}>
-            <h1>Patients</h1>
             <div>
+                <h1>Patients</h1>
+                <span>Welcome {currentUser.principal.username}</span>
                 <Button 
                     className={buttonClasses.button}
-                    text="Add Patient"
-                    onClick={addPatientHandler}
-                />
-                <PatientModal
-                    isVisible={addPatientIsVisible || !!currentPatient.firstName}
-                    setIsVisible={setAddPatientIsVisible}
-                    currentPatient={currentPatient}
-                    setCurrentPatient={setCurrentPatient}
-                />
-                <Button 
-                    className={buttonClasses.button}
-                    text="Delete Selected"
-                    onClick={deleteSelectedPatientsHandler}
+                    text="Logout"
+                    onClick={onLogoutButtonClick}
                 />
             </div>
+            {
+                /** If current logged in user has the "patient:write" permission then they can view the add/delete buttons **/
+                AuthUtil.isUserHasPermission(currentUser, "patient:write") &&
+                <div>
+                    <Button 
+                        className={buttonClasses.button}
+                        text="Add Patient"
+                        onClick={addPatientHandler}
+                    />
+                    <PatientModal
+                        isVisible={addPatientIsVisible || !!currentPatient.firstName}
+                        setIsVisible={setAddPatientIsVisible}
+                        currentPatient={currentPatient}
+                        setCurrentPatient={setCurrentPatient}
+                    />
+                    <Button 
+                        className={buttonClasses.button}
+                        text="Delete Selected"
+                        onClick={deleteSelectedPatientsHandler}
+                    />
+                </div>
+            }
             <PatientTable 
                 data={data}
                 setSelectedRows={setSelectedRows}
                 setSelectedPatient={setCurrentPatient}
+                currentUser={currentUser}
             />
         </div>
     )

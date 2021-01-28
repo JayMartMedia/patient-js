@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactTable } from './ReactTable';
 import classes from './PatientTable.module.scss';
 
-function PatientTable({data, setSelectedRows, setSelectedPatient}) {
+function PatientTable({data, setSelectedRows, setSelectedPatient, currentUser}) {
 
     const columns = [
         { Header: 'First Name', accessor: 'firstName' },
@@ -17,6 +17,7 @@ function PatientTable({data, setSelectedRows, setSelectedPatient}) {
                 data={data}
                 setSelectedRows={setSelectedRows}
                 setSelectedPatient={setSelectedPatient}
+                currentUser={currentUser}
             />
         </div>
     )
