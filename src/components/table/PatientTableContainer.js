@@ -33,7 +33,7 @@ function PatientTableContainer() {
     }
 
     const refreshData = async () => {
-        setData(await Rest.get(PATIENT_CONSTANTS.TYPE))
+        setData(await Rest.get(PATIENT_CONSTANTS.TYPE) || [])
     }
 
     useEffect(() => {
