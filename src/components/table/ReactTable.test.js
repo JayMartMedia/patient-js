@@ -25,22 +25,71 @@ const data_12 = [
 ]
 
 const columns = [
-    { Header: 'id', accessor: 'id'},
-    { Header: '', accessor: 'selected'},
     { Header: 'First Name', accessor: 'firstName' },
     { Header: 'Last Name', accessor: 'lastName' },
+    { Header: 'DOB', accessor: 'dob' },
 ];
 
+const currentUserTrainee = {
+    "principal":{
+        "username":"linda",
+        "authorities":[
+            {"role":"ROLE_TRAINEE"},
+            {"role":"patient:read"}
+        ],
+        "accountNonExpired":true,
+        "accountNonLocked":true,
+        "credentialsNonExpired":true,
+        "enabled":true
+    },
+    "authorities":[
+        {"role":"ROLE_TRAINEE"},
+        {"role":"patient:read"}
+    ],
+    "details":{
+        "remoteAddress":"127.0.0.1"
+    },
+    "authenticated":true
+}
+
+const currentUserAdministrator = {
+    "principal":{
+        "username":"jane",
+        "authorities":[
+            {"role":"ROLE_ADMINISTRATOR"},
+            {"role":"patient:read"},
+            {"role":"patient:write"}
+        ],
+        "accountNonExpired":true,
+        "accountNonLocked":true,
+        "credentialsNonExpired":true,
+        "enabled":true
+    },
+    "authorities":[
+        {"role":"ROLE_ADMINISTRATOR"},
+        {"role":"patient:read"},
+        {"role":"patient:write"}
+    ],
+    "details":{
+        "remoteAddress":"127.0.0.1"
+    },
+    "authenticated":true
+}
+
+const getShallow = (data, user) => {
+    return shallow(<ReactTable 
+        columns={columns}
+        data={data}
+        setSelectedRows={() => {}}
+        currentUser={user}
+    />);
+}
 
 describe('ReactTable', () => {
     let wrapper;
 
     beforeEach(() => {
-        wrapper = shallow(<ReactTable 
-            columns={columns}
-            data={data_3}
-            setSelectedRows={() => {}}
-        />);
+        wrapper = getShallow(data_3, currentUserTrainee)
     })
 
     it('renders fully with no errors', () => {
@@ -48,10 +97,17 @@ describe('ReactTable', () => {
             columns={columns}
             data={data_3}
             setSelectedRows={() => {}}
+            currentUser={currentUserTrainee}
         />);
     })
 
-    it('renders a column header for each column', () => {
+    it('renders only passed columns when user does not have patient:write', () => {
+        const wrapper = getShallow(data_3, currentUserTrainee)
+        expect(wrapper.find('th')).toHaveLength(columns.length);
+    })
+
+    it('renders passed columns and select, edit when user does have patient:write', () => {
+        const wrapper = getShallow(data_3, currentUserAdministrator)
         expect(wrapper.find('th')).toHaveLength(columns.length + 2);
     })
 
@@ -83,11 +139,7 @@ describe('ReactTable', () => {
 
     it('has first/previous buttons disabled, and next/last buttons enabled when more than 10 rows and on first page', () => {
         // use 12 rows to test pagination
-        const wrapper = shallow(<ReactTable
-            columns={columns}
-            data={data_12}
-            setSelectedRows={() => {}}
-        />);
+        const wrapper = getShallow(data_12, currentUserTrainee)
 
         // next and last buttons should be enabled 
         const disabledNextAndLastButtons = wrapper.findWhere(element => {
@@ -104,11 +156,7 @@ describe('ReactTable', () => {
 
     it('has first/previous buttons enabled, and next/last buttons disabled when on last page of more than 10 rows', () => {
         // use 12 rows to test pagination
-        const wrapper = shallow(<ReactTable
-            columns={columns}
-            data={data_12}
-            setSelectedRows={() => {}}
-        />);
+        const wrapper = getShallow(data_12, currentUserTrainee)
 
         const nextPageButton = wrapper.findWhere(element => {
             return element.is('button') && element.text() == '>';
@@ -132,11 +180,7 @@ describe('ReactTable', () => {
 
     it('can change page via buttons', () => {
         // use 12 rows to test pagination
-        const wrapper = shallow(<ReactTable
-            columns={columns}
-            data={data_12}
-            setSelectedRows={() => {}}
-        />);
+        wrapper = getShallow(data_12, currentUserTrainee)
 
         // check that last page button works
         const lastPageButton = wrapper.findWhere(element => {
@@ -163,11 +207,7 @@ describe('ReactTable', () => {
 
     it('can change page via number input field', () => {
         // use 12 rows to test pagination
-        const wrapper = shallow(<ReactTable
-            columns={columns}
-            data={data_12}
-            setSelectedRows={() => {}}
-        />);
+        wrapper = getShallow(data_12, currentUserTrainee)
 
         const numberInputField = wrapper.findWhere(element => {
             return element.is('input') && element.props().type == 'number';
@@ -181,11 +221,7 @@ describe('ReactTable', () => {
 
     it('views page 1 when there is no value provided to the number input event', () => {
         // use 12 rows to test pagination
-        const wrapper = shallow(<ReactTable
-            columns={columns}
-            data={data_12}
-            setSelectedRows={() => {}}
-        />);
+        wrapper = getShallow(data_12, currentUserTrainee)
 
         const numberInputField = wrapper.findWhere(element => {
             return element.is('input') && element.props().type == 'number';
@@ -199,11 +235,7 @@ describe('ReactTable', () => {
 
     it('can change the amount of rows shown via pagination', () => {
         // use 12 rows to test pagination
-        const wrapper = shallow(<ReactTable
-            columns={columns}
-            data={data_12}
-            setSelectedRows={() => {}}
-        />);
+        wrapper = getShallow(data_12, currentUserTrainee)
 
         // set row count to 20
         const paginationSelection = wrapper.find('select');

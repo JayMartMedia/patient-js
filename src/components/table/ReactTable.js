@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTable, usePagination, useRowSelect } from 'react-table';
+import AuthUtil from '../../authentication/authenticationUtility';
 import classes from './ReactTable.module.scss';
 import buttonClasses from '../buttons/Button.module.scss';
 
@@ -8,7 +9,7 @@ import IndeterminateCheckbox from '../IndeterminateCheckbox';
 
 
 
-export const ReactTable = ({ columns, data, setSelectedRows, setSelectedPatient }) => {
+export const ReactTable = ({ columns, data, setSelectedRows, setSelectedPatient, currentUser }) => {
     // Use the state and functions returned from useTable to build your UI
     const {
       getTableProps,
@@ -35,44 +36,47 @@ export const ReactTable = ({ columns, data, setSelectedRows, setSelectedPatient 
       usePagination,
       useRowSelect,
       hooks => {
-        hooks.visibleColumns.push(columns => [
-          // Let's make a column for selection
-          {
-            id: 'selection',
-            // The header can use the table's getToggleAllRowsSelectedProps method
-            // to render a checkbox
-            Header: ({ getToggleAllPageRowsSelectedProps }) => (
-              <div className={classes.checkboxCol}>
-                <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
-              </div>
-            ),
-            // The cell can use the individual row's getToggleRowSelectedProps method
-            // to the render a checkbox
-            Cell: ({ row }) => (
-              <div className={classes.checkboxCol}>
-                <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
-              </div>
-            ),
-          },
-          ...columns,
-          {
-            id: 'edit',
-            Header: ({ getToggleAllPageRowsSelectedProps }) => (
-              <div>
-                <p>Edit</p>
-              </div>
-            ),
-            Cell: ({ row }) => (
-              <div>
-                <Button 
-                  className={buttonClasses.button}
-                  text={'Edit'}
-                  onClick={() => {setSelectedPatient(row.original)}}
-                />
-              </div>
-            ),
-          },
-        ])
+        /** If the user has the "patient:write" permission, add the select and edit columns **/
+        if(AuthUtil.isUserHasPermission(currentUser, "patient:write")){
+          hooks.visibleColumns.push(columns => [
+            // Let's make a column for selection
+            {
+              id: 'selection',
+              // The header can use the table's getToggleAllRowsSelectedProps method
+              // to render a checkbox
+              Header: ({ getToggleAllPageRowsSelectedProps }) => (
+                <div className={classes.checkboxCol}>
+                  <IndeterminateCheckbox {...getToggleAllPageRowsSelectedProps()} />
+                </div>
+              ),
+              // The cell can use the individual row's getToggleRowSelectedProps method
+              // to the render a checkbox
+              Cell: ({ row }) => (
+                <div className={classes.checkboxCol}>
+                  <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+                </div>
+              ),
+            },
+            ...columns,
+            {
+              id: 'edit',
+              Header: ({ getToggleAllPageRowsSelectedProps }) => (
+                <div>
+                  <p>Edit</p>
+                </div>
+              ),
+              Cell: ({ row }) => (
+                <div>
+                  <Button 
+                    className={buttonClasses.button}
+                    text={'Edit'}
+                    onClick={() => {setSelectedPatient(row.original)}}
+                  />
+                </div>
+              ),
+            },
+          ])
+        }
       }
     )
 
