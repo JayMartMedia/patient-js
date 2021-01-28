@@ -32,12 +32,18 @@ function PatientTableContainer({currentUser}) {
         for( const rowId of rowIds ){
             await Rest.delete(PATIENT_CONSTANTS.TYPE, rowId);
         }
-
         refreshData()
     }
 
     const refreshData = async () => {
-        setData(await Rest.get(PATIENT_CONSTANTS.TYPE) || [])
+        const data = await Rest.get(PATIENT_CONSTANTS.TYPE)
+        data.sort((a,b) => {
+            if (a.dateOfBirth === b.dateOfBirth) {
+                return 0;
+            }
+            return a.dateOfBirth > b.dateOfBirth ? 1 : -1;
+        })
+        setData(data || [])
     }
 
     useEffect(() => {
