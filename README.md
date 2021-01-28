@@ -18,6 +18,7 @@ The use case could be any web application where you need a user to be able to vi
     + [SASS](https://sass-lang.com/) - CSS preprocessor which adds the usage of variables, nesting and more to standard CSS
 + #### Backend [patient-service](https://github.com/JayMartMedia/patient-service)
     + [Spring Boot](https://spring.io/projects/spring-boot) - Popular Java framework for building REST APIs
+    + [Spring Boot Security](https://spring.io/projects/spring-security#overview) - Used for user login and protecting rest endpoints
     + [PostgreSQL](https://www.postgresql.org/) - Open source relational database system
 + #### Infrastructure [patient-infrastructure](https://github.com/JayMartMedia/patient-infrastructure)
     + [Docker](https://www.docker.com/) - Containerization tool used for deployment flexibility
@@ -35,3 +36,7 @@ The use case could be any web application where you need a user to be able to vi
     + Run the `./start-service.sh` script to start up the React application in a docker container
     + (Alternative) Run `npm start` if you would like the React app to update changes in realtime (i.e. when developing)
 #### View the application at [http://localhost/patient-js/](http://localhost/patient-js/)
+
+# Areas of Improvement
++ Add sorting to table columns
++ Make the tables prettier
