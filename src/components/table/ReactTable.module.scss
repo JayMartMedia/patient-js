@@ -7,6 +7,10 @@ table{
     box-shadow: 0 0 0 1px #444; /* this draws the table border  */ 
 }
 
+tr{
+    height:3em;
+}
+
 td{
     font-size: 1em;
     text-align: center;
