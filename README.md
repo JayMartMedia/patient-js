@@ -46,3 +46,4 @@ The use case could be any web application where you need a user to be able to vi
 + Add sorting to table columns
 + Make the tables prettier
 + Add SSL certificate (important if using actual passwords, ok for now since dummy password is used)
++ Make IE11 friendly (may not be important as IE is being phased out by Microsoft)
