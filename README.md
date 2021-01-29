@@ -45,3 +45,4 @@ The use case could be any web application where you need a user to be able to vi
 ## Areas of Improvement
 + Add sorting to table columns
 + Make the tables prettier
++ Add SSL certificate (important if using actual passwords, ok for now since dummy password is used)
