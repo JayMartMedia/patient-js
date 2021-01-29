@@ -53,5 +53,6 @@ The use case could be any web application where you need a user to be able to vi
 ## Areas of Improvement
 + Add sorting to table columns
 + Make the tables prettier
++ Implement web-sockets so that data tables are updated in real time between multiple users
 + Add SSL certificate (important if using actual passwords, ok for now since dummy password is used)
 + Make IE11 friendly (may not be important as IE is being phased out by Microsoft)
