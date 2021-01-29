@@ -52,14 +52,16 @@ function PatientTableContainer({currentUser}) {
 
     return (
         <div className={classes.container}>
-            <div>
-                <h1>Patients</h1>
-                <span>Welcome {currentUser.principal.username}</span>
-                <Button 
-                    className={buttonClasses.button}
-                    text="Logout"
-                    onClick={onLogoutButtonClick}
-                />
+            <div className={classes.header}>
+                <h1 className={classes.h1}>Patients</h1>
+                <div className={classes.userSection}>
+                    <span className={classes.username}>{currentUser.principal.username}</span>
+                    <Button 
+                        className={buttonClasses.button}
+                        text="Logout"
+                        onClick={onLogoutButtonClick}
+                    />
+                </div>
             </div>
             {
                 /** If current logged in user has the "patient:write" permission then they can view the add/delete buttons **/

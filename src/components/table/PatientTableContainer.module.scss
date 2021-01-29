@@ -2,10 +2,6 @@
     background: white;
     border-radius: 1em;
     padding: 2em;
-
-    h1{
-        margin-top: 0px;
-    }
     
     table{
         border-collapse: collapse;
@@ -17,4 +13,25 @@
     tr:nth-child(even) {
         background-color: #eee;
     }
+}
+
+.header{
+    line-height: 50px;
+}
+
+.h1{
+    float: left;
+    width: 50%;
+    margin:0px;
+}
+
+.userSection{
+    text-align: right;
+    float: left;
+    width: 50%;
+}
+
+.username{
+    font-size: 1.5em;
+    padding-right: .5em;
 }
