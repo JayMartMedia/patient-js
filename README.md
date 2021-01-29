@@ -1,11 +1,11 @@
 # Demo Patient Tracker App Frontend
 
-### Purpose
+## Purpose
 This app was built as a way to get more familiar with some popular development frameworks and libraries.
 
 This app allows a user to view, add, edit, and delete patients stored in the PostgreSQL database through a web gui. The app has a simple UI. It is not visually spectacular. The purpose is to demonstrate the knowledge of the tools listed below, not to demonstrate graphic design skills.
 
-### Business Use Case
+## Business Use Case
 The use case could be any web application where you need a user to be able to view, add, edit, and/or delete items specifically from a table. For example, keeping a list of patients, users, customers, orders, etc.
 
 ## Tools Used
@@ -24,7 +24,7 @@ The use case could be any web application where you need a user to be able to vi
     + [Docker](https://www.docker.com/) - Containerization tool used for deployment flexibility
     + [NGINX](https://www.nginx.com/) - Open source tool used for all things networking, used to set up a reverse proxy in this project
     
-# Starting the Application
+## Starting the Application
 
 1. Clone each of the repositories listed above
 2. In the patient-infrastructure project
@@ -36,10 +36,11 @@ The use case could be any web application where you need a user to be able to vi
     + Run the `./start-service.sh` script to start up the React application in a docker container
     + (Alternative) Run `npm start` if you would like the React app to update changes in realtime (i.e. when developing)
 #### View the application at [http://localhost/patient-js/](http://localhost/patient-js/)
-Login with:
+
+## Login with:
 + username `linda`, password: `password` - Trainee, has patient:read permission only
 + username `annasmith`, password: `password` - Administrator, has patient:read and patient:write permission
 
-# Areas of Improvement
+## Areas of Improvement
 + Add sorting to table columns
 + Make the tables prettier
