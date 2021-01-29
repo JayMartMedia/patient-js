@@ -7,6 +7,14 @@ This app was built as a way to get more familiar with some popular development f
 This app allows a user to view, add, edit, and delete patients stored in the PostgreSQL database through a web gui. The app has a simple UI. It is not visually spectacular. The purpose is to demonstrate the knowledge of the tools listed below, not to demonstrate graphic design skills.
 
 ## Business Use Case
+This app has the major components used in most any production web app:
++ A frontend UI for the user to interact with
++ A backend REST API for the frontend to talk to
++ A database to store patient data
++ The ability to create, read, update and delete data in the database
++ User login and authentication
++ Cloud hosted (on Google Cloud Platform)
+
 The use case could be any web application where you need a user to be able to view, add, edit, and/or delete items specifically from a table. For example, keeping a list of patients, users, customers, orders, etc.
 
 ## Tools Used
