@@ -1,5 +1,5 @@
 # Demo Patient Tracker App Frontend
-[Publicly hosted](http://patient.jessemartindev.com/) on GCP (Use username and password combo from the [login with](https://github.com/JayMartMedia/patient-js#login-with) section)
+[Publicly hosted](http://jessemartindev.com/) on GCP (Use username and password combo from the [login with](https://github.com/JayMartMedia/patient-js#login-with) section)
 
 ## Purpose
 This app was built as a way to get more familiar with some popular development frameworks and libraries.
